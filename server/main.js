@@ -10,11 +10,10 @@ Meteor.startup(() => {
   }, {
     $set: {
       clientId: process.env.OAUTH2_ID || 'your-client-id',
-      //loginStyle: 'redirect',
       secret: process.env.OAUTH2_SECRET || 'your-client-secret',
       issuer: process.env.OAUTH2_SITE || 'https://your-oauth2-provider.com',
       requestPermissions: [ 'email', 'userinfo', 'openid', 'phone_number', 'sub' ],
-      ttl: 1 /* minutes */ * 60 /* seconds */ // TODO: too short
+      ttl: 60 /* minutes */ * 60 /* seconds */
     }
   })
 
