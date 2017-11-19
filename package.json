@@ -1,5 +1,5 @@
 {
-  "name": "meteor-auth-test",
+  "name": "meteor-auth-demo",
   "private": true,
   "scripts": {
     "start": "meteor run"
