@@ -7,6 +7,7 @@
 
   {{> hello}}
   {{> login}}
+  {{> logout}}
   {{> useToken}}
 
 </body>
@@ -21,7 +22,14 @@
   <p>You are {{loginStatus}}.</p>
 </template>
 
+<template name="logout">
+  <button>Logout</button>
+</template>
+
 <template name="useToken">
-  <button class="client">Use token (client)</button>
-  <button class="server">Use token (server)</button>
+  <div>
+    <button class="client">Use token (client)</button>
+    <button class="server">Use token (server)</button>
+    <button class="refresh">Refresh userinfo</button>
+  </div>
 </template>

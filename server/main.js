@@ -1,9 +1,9 @@
 import { Meteor } from 'meteor/meteor';
-import { sayHello, getLiveToken } from 'meteor-u5auth'
+import { getLiveToken, setU5AuthDebug } from 'meteor-u5auth'
 
 Meteor.startup(() => {
 
-  sayHello()
+  setU5AuthDebug()
 
   ServiceConfiguration.configurations.upsert({
     service: 'u5auth'
@@ -13,11 +13,12 @@ Meteor.startup(() => {
       //loginStyle: 'redirect',
       secret: process.env.OAUTH2_SECRET || 'your-client-secret',
       issuer: process.env.OAUTH2_SITE || 'https://your-oauth2-provider.com',
-      requestPermissions: [ 'email', 'userinfo', 'openid', 'phone_number', 'sub' ]
+      requestPermissions: [ 'email', 'userinfo', 'openid', 'phone_number', 'sub' ],
+      ttl: 1 /* minutes */ * 60 /* seconds */ // TODO: too short
     }
   })
 
-});
+})
 
 Meteor.methods({
   async printToken() {

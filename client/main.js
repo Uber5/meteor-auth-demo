@@ -1,6 +1,6 @@
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
-import { sayHello, getLiveToken } from 'meteor-u5auth'
+import { getLiveToken, refreshUserinfo } from 'meteor-u5auth'
 import { Meteor } from 'meteor/meteor'
 
 import './main.html';
@@ -19,19 +19,27 @@ Template.login.events({
   }
 })
 
+Template.logout.events({
+  'click button'(event, instance) {
+    Meteor.logout()
+  }
+})
+
 Template.useToken.events({
   'click button.client'(event, instance) {
     getLiveToken().then(t => console.log('live token:', t))
   },
   'click button.server'(event, instance) {
     Meteor.call('printToken') // should print token on server console
+  },
+  'click button.refresh'(event, instance) {
+    refreshUserinfo().then(() => console.log('refreshed'))
   }
 })
 
 Template.hello.onCreated(function helloOnCreated() {
   // counter starts at 0
   this.counter = new ReactiveVar(0);
-  sayHello()
   console.log('Meteor.user()', Meteor.user())
 });
 
