@@ -1,9 +1,7 @@
 import { Meteor } from 'meteor/meteor';
-import { getLiveToken, setU5AuthDebug } from 'meteor-u5auth'
+import { getLiveToken } from 'meteor-u5auth'
 
 Meteor.startup(() => {
-
-  setU5AuthDebug()
 
   ServiceConfiguration.configurations.upsert({
     service: 'u5auth'
